@@ -1,6 +1,7 @@
 package br.com.devsuzarte.desafioitaujunior.controller;
 
 import br.com.devsuzarte.desafioitaujunior.entity.TransactionEntity;
+import br.com.devsuzarte.desafioitaujunior.service.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 )
 public class TransactionController {
 
-    public ResponseEntity transfer(@RequestBody TransactionEntity transaction) {
+    private TransactionService transactionService;
+
+    // Responsável pela realização transação
+    public ResponseEntity<Void> transfer(@RequestBody TransactionEntity transaction) {
         return ResponseEntity.status(HttpStatus.CREATED).build(); // 201: CREATED
     }
 
