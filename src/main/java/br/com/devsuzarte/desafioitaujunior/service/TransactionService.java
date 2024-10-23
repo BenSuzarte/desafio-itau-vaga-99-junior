@@ -2,6 +2,7 @@ package br.com.devsuzarte.desafioitaujunior.service;
 
 import br.com.devsuzarte.desafioitaujunior.entity.TransactionEntity;
 import br.com.devsuzarte.desafioitaujunior.exception.TransactionException.InvalidTransactionException;
+import br.com.devsuzarte.desafioitaujunior.repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,19 @@ import java.time.OffsetDateTime;
 @Service
 public class TransactionService {
 
+    private final TransactionRepository transactionRepository;
+
+    public TransactionService(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
     public void perform(TransactionEntity transaction) {
         log.info("Validating transaction");
         ValidateTransaction(transaction);
 
-        log.info("Finished validating transaction");
+        log.info("saving transaction");
+        transactionRepository.save(transaction);
+
         return;
     }
 
