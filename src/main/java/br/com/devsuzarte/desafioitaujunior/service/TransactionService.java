@@ -29,6 +29,11 @@ public class TransactionService {
         return;
     }
 
+    public void clear() {
+        transactionRepository.clear();
+        return;
+    }
+
     private void ValidateTransaction(TransactionEntity transaction) {
         log.info("Verifying value");
         if(transaction.getValor().compareTo(BigDecimal.ZERO) < 0) throw new InvalidTransactionException("Invalid value");

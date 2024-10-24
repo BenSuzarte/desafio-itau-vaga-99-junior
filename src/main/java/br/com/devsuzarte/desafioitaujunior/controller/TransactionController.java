@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -37,11 +34,25 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.CREATED).build(); // 201: CREATED
 
         } catch (InvalidTransactionException err) {
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build(); // 422: UNPROCESSABLE ENTITY
 
         } catch (Exception err) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // 401: BAD REQUEST
         }
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> delete() {
+        try {
+            log.info("Deleting transactions...");
+            transactionService.clear();
+
+            return ResponseEntity.ok().build();
+
+        } catch (Exception err) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // 401: BAD REQUEST
+        }
+
     }
 
 }
