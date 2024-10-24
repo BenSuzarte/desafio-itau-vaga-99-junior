@@ -41,6 +41,7 @@ public class TransactionController {
         }
     }
 
+    // Responsável por limpar o array de transações
     @DeleteMapping()
     public ResponseEntity<Void> delete() {
         try {
