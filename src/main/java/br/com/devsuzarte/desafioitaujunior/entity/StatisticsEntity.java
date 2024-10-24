@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class StatisticsEntity {
     private int count;
-    private float sum;
-    private float average;
-    private float min;
-    private float max;
+    private BigDecimal sum;
+    private BigDecimal average;
+    private BigDecimal min;
+    private BigDecimal max;
 }

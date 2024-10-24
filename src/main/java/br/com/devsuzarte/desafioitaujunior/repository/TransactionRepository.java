@@ -23,4 +23,9 @@ public class TransactionRepository {
         transactions.clear();
     }
 
+    public List<TransactionEntity> getTransactions() {
+        return transactions;
+    }
+
+
 }
